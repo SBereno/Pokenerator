@@ -23,8 +23,4 @@ export class AppComponent implements OnInit {
       console.log(this.regionsArray[i].name);
     }
   }
-
-  selectRegion(newRegion) {
-    document.getElementById("regiones").innerText = newRegion.charAt(0).toUpperCase() + newRegion.substr(1).toLowerCase();
-  }
 }

@@ -1,15 +1,11 @@
 <h1>Pokenerator</h1>
 <div class="generator">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="regiones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Todas las regiones
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="regiones">
-            <li class="dropdown-item" type="button" (click)="selectRegion('Todas las regiones')">Todas las regiones</li>
-            <li class="dropdown-item" type="button" (click)="selectRegion(item.name)" *ngFor="let item of regionsArray">
-                {{item.name | titlecase}}
-            </li>
-        </ul>
+    <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="regionSelect" ngbDropdownToggle>{{(selected.value | titlecase) || "Todas Las Regiones"}}</button>
+        <div ngbDropdownMenu aria-labelledby="regionSelect" #selected>
+            <button ngbDropdownItem id="option" on-click="selected.value='Todas Las Regiones'">Todas Las Regiones</button>
+            <button ngbDropdownItem id="option" on-click="selected.value=region.name" *ngFor="let region of regionsArray">{{region.name | titlecase}}</button>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Generar</button>
     </div>
-    <button type="button" class="btn btn-primary" (click)="onSubmit()">Generar</button>
 </div>
