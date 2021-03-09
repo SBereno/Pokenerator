@@ -1,11 +1,18 @@
 <h1>Pokenerator</h1>
 <div class="generator">
     <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="regionSelect" ngbDropdownToggle>{{(selected.value | titlecase) || "Todas Las Regiones"}}</button>
-        <div ngbDropdownMenu aria-labelledby="regionSelect" #selected>
-            <button ngbDropdownItem id="option" on-click="selected.value='Todas Las Regiones'">Todas Las Regiones</button>
-            <button ngbDropdownItem id="option" on-click="selected.value=region.name" *ngFor="let region of regionsArray">{{region.name | titlecase}}</button>
+        <button class="btn btn-outline-primary" id="regionSelect" ngbDropdownToggle>{{(selectedRegion.value | titlecase) || "All Regions"}}</button>
+        <div ngbDropdownMenu aria-labelledby="regionSelect" #selectedRegion>
+            <button ngbDropdownItem id="option" on-click="selectedRegion.value='All Regions'">All Regions</button>
+            <button ngbDropdownItem id="option" on-click="selectedRegion.value=region.name" *ngFor="let region of regionsArray">{{region.name | titlecase}}</button>
         </div>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()">Generar</button>
     </div>
+    <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="typeSelect" ngbDropdownToggle>{{(selectedType.value | titlecase) || "All Types"}}</button>
+        <div ngbDropdownMenu aria-labelledby="typeSelect" #selectedType>
+            <button ngbDropdownItem id="option" on-click="selectedType.value='All Types'">All Types</button>
+            <button ngbDropdownItem id="option" on-click="selectedType.value=type.name" *ngFor="let type of typesArray">{{type.name | titlecase}}</button>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Generate</button>
 </div>

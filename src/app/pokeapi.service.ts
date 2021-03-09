@@ -12,4 +12,8 @@ export class PokemonApiService {
     getRegions(): Observable<any> {
         return this.http.get<any>('https://pokeapi.co/api/v2/region');
     }
+
+    getTypes(): Observable<any> {
+        return this.http.get<any>('https://pokeapi.co/api/v2/type');
+    }
 }
