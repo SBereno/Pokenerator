@@ -7,30 +7,31 @@ import { PokemonApiService } from './Pokeapi.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  regionsArray;
-  typesArray;
+
+  regionsArray = [];
+  typesArray = [];
+  pokemonArray = [];
+  typesModel = {
+    repeatedTypes: false
+  };
+
   constructor(private _pokemonApiService: PokemonApiService) {
   }
 
   ngOnInit() {
     this._pokemonApiService.getRegions().subscribe(response => {
-      this.regionsArray = response.results;
+      this.regionsArray = response;
     });
 
     this._pokemonApiService.getTypes().subscribe(response => {
-      this.typesArray = response.results;
-      this.typesArray.splice(18, 2);
-      this.typesArray.sort(function (a, b) {
-        if (a.name < b.name) { return -1; }
-        if (a.name > b.name) { return 1; }
-        return 0;
-      });
+      this.typesArray = response;
     });
   }
 
-  onSubmit() {
-    for (let i = 0; i < this.typesArray.length; i++) {
-      console.log(this.typesArray[i].name);
-    }
+  generate(teamNumber) {
+    this.pokemonArray.splice(0, this.pokemonArray.length);
+    this._pokemonApiService.getPokemon(teamNumber).subscribe(response => {
+      this.pokemonArray = response;
+    });
   }
 }

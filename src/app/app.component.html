@@ -14,5 +14,31 @@
             <button ngbDropdownItem id="option" on-click="selectedType.value=type.name" *ngFor="let type of typesArray">{{type.name | titlecase}}</button>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="onSubmit()">Generate</button>
+    <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="numberSelect" ngbDropdownToggle>{{selectedNumber.value || 6}}</button>
+        <div ngbDropdownMenu aria-labelledby="typeSelect" #selectedNumber>
+            <button ngbDropdownItem id="option" on-click="selectedNumber.value=1">1</button>
+            <button ngbDropdownItem id="option" on-click="selectedNumber.value=2">2</button>
+            <button ngbDropdownItem id="option" on-click="selectedNumber.value=3">3</button>
+            <button ngbDropdownItem id="option" on-click="selectedNumber.value=4">4</button>
+            <button ngbDropdownItem id="option" on-click="selectedNumber.value=5">5</button>
+            <button ngbDropdownItem id="option" on-click="selectedNumber.value=6">6</button>
+        </div>
+    </div>
+    <div class="btn-group btn-group-toggle">
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton [(ngModel)]="typesModel.repeatedTypes"> Don't Repeat Types
+        </label>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="generate(selectedNumber.value)">Generate</button>
+    <hr/>
+    <pre>{{typesModel.repeatedTypes}}</pre>
 </div>
+<hr/>
+<ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
+    <ngb-panel *ngFor="let pokemon of pokemonArray; index as i" title="{{pokemon.name}}" id="ngb-panel-{{i}}">
+      <ng-template ngbPanelContent>
+        {{pokemon.name}}
+      </ng-template>
+    </ngb-panel>
+</ngb-accordion>
