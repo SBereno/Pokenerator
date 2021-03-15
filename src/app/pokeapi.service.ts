@@ -33,7 +33,8 @@ export class PokemonApiService {
         }));
     }
 
-    getPokemon(teamNumber): Observable<any> {
+    getPokemon(teamNumber, repeatedTypes): Observable<any> {
+        console.log(repeatedTypes);
         if (teamNumber == null) teamNumber = 6;
         var pokemonIdArray = [];
         var generatedId;

@@ -28,9 +28,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  generate(teamNumber) {
+  generate(teamNumber, repeatedTypes) {
     this.pokemonArray.splice(0, this.pokemonArray.length);
-    this._pokemonApiService.getPokemon(teamNumber).subscribe(response => {
+    this._pokemonApiService.getPokemon(teamNumber, repeatedTypes).subscribe(response => {
       this.pokemonArray = response;
     });
   }
